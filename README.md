@@ -1,2 +1,0 @@
-# mapshots1
- 
