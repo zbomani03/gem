@@ -1,0 +1,16 @@
+{
+  "name": "@agstudio/services",
+  "version": "1.1.1",
+  "description": "Services",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "typescript": "3.6.3"
+  },
+  "scripts": {
+    "transpile": "tsc"
+  },
+  "dependencies": {
+    "granular-ff-web-client": "^1.0.13"
+  }
+}

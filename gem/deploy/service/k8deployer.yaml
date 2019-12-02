@@ -1,0 +1,15 @@
+kubePath: manifests # path to manifest files
+prereqs:
+  - 01-service.yml # grouping of pods to create internal dns entry to set of pods
+  - 02-ingress.yml # ingress to k8's cluster from external (dns)
+deployType: bluegreen # deployment types
+deployment:
+  - 00-deployment.yml # deployment file
+onFailure: rollback
+healthChecks:
+  - service_name: "agstudio-{{PRODUCTNAME}}"
+    maxRetry: 20
+    http:
+      timeout: 15 # seconds
+      urls:
+        - "https://{{SERVICENAME}}.{{CLUSTERNAME}}/status"

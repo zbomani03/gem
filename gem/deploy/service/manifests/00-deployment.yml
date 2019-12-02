@@ -1,0 +1,83 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+# app, version are required labels on deployments and pods
+apiVersion: apps/v1
+kind: Deployment
+metadata: # deployments meta data, pushes to replica sets
+  namespace: "{{K8_NAMESPACE}}"
+  name: "agstudio-{{PRODUCTNAME}}-{{CONTAINERVERSION}}"
+  labels:
+    app: "agstudio-{{PRODUCTNAME}}"
+    name: "agstudio-{{PRODUCTNAME}}"
+    product: "agstudio"
+    team: "agstudio"
+    customer_facing: "yes"
+    version: "{{CONTAINERVERSION}}"
+    slack_channel: "agstudio_notify"
+    victorops_routing_key: "agstudio"
+spec:
+  replicas: 2 # number of pods
+  selector: # which pods belongs to replica set
+    matchLabels:
+      app: "agstudio-{{PRODUCTNAME}}"
+      version: "{{CONTAINERVERSION}}"
+  progressDeadlineSeconds: 60 # how long it waits for pods to become healthly
+  template: # pod template
+    metadata:
+      # Uncomment to add IAM Role for Pod
+      annotations:
+        iam.amazonaws.com/role: "kubernetes/EWRCottonRole"
+      labels:
+        app: "agstudio-{{PRODUCTNAME}}"
+        name: "agstudio-{{PRODUCTNAME}}"
+        product: "agstudio"
+        team: "agstudio"
+        customer_facing: "yes"
+        version: "{{CONTAINERVERSION}}"
+        slack_channel: "agstudio_notify"
+        victorops_routing_key: "agstudio"
+    spec: # containers running inside each pod <-- this "like" docker-compose
+      # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#container-v1-core
+      containers:
+        - name: "agstudio-{{PRODUCTNAME}}"
+          image: "{{REPO}}-{{IMAGENAME}}:{{CONTAINERVERSION}}"
+          # livelyness and readiness probes
+          ################################################################################
+          # will restart pod if failed
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 8080
+              httpHeaders:
+                - name: X-K8-Probe
+                  value: liveness
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          # wont route traffic to pod unless passed
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: 8080
+              httpHeaders:
+                - name: X-K8-Probe
+                  value: readiness
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          env:
+            - name: ENVIRONMENT
+              value: "{{ENVIRONMENT}}"
+            - name: REGION
+              value: "{{REGION}}"
+            - name: AWS_DEFAULT_REGION
+              value: "{{REGION}}"
+          # exposed ports
+          ################################################################################
+          ports:
+            - containerPort: 8080
+              name: http
+          # container resources
+          ################################################################################
+          resources:
+            # max allowed ammount:
+            limits:
+              memory: "{{MEMORY}}"
+              cpu: "200m"

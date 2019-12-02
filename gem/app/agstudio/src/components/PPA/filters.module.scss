@@ -1,0 +1,66 @@
+.filtersContainer {
+  max-width: 800px;
+}
+
+.readonlyFilters {
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 1;
+  max-height: 1000px;
+
+  transition: opacity .1s linear .7s, max-height .5s linear .4s;
+}
+
+.editFilters {
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+
+  transition: opacity .1s linear .0s, max-height .5s linear .1s;
+}
+
+.editMode {
+
+  .readonlyFilters {
+    opacity: 0;
+    max-height: 0;
+
+    transition: opacity .1s linear .0s, max-height .5s linear .1s;
+  }
+
+  .editFilters {
+    opacity: 1;
+    max-height: 2000px;
+
+    transition: opacity .1s linear .6s, max-height .5s linear .3s;
+  }
+
+}
+
+.feedbackStill {
+  display: block !important;
+}
+
+.productsTreeButton {
+
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  border: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+    color: inherit !important;
+    background: transparent !important;
+  }
+
+}
+
+.productsTreeContainer {
+  overflow-x: auto;
+  height: 268px;
+  border: 1px solid #ccc;
+  padding: 8px;
+}

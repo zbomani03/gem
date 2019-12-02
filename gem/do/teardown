@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+# killing the docker network
+make stop
+
+exit 0

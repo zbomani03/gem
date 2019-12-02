@@ -1,0 +1,30 @@
+#!/bin/bash -e
+
+echo "Starting do/all"
+
+if [[ "${ACTION}" == "build_container" ]]; then
+
+    USER=$(credstash get jenkins.artifactory.user)
+    PASS=$(credstash get -n jenkins.artifactory.pass)
+    docker login artifactory.internal.granular.ag -u "${USER}" -p "${PASS}"
+    echo "Completed docker login"
+
+    do/build_container
+    echo "Completed build"
+
+    do/deploy_container
+    echo "Completed push"
+
+fi
+
+if [[ "${ACTION}" == "deploy" ]]; then
+    do/deploy
+    echo "Completed deploy"
+fi
+
+if [[ "${ACTION}" == "test" ]]; then
+    do/test
+    echo "Completed test"
+fi
+
+echo "Completed do/all"

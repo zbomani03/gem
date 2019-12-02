@@ -1,0 +1,26 @@
+# This is for local testing only. You should run in the terminal:
+# docker-compose up -d --build APP-NAME
+
+version: "3"
+services:
+
+  monorepo:
+    build:
+      context: ./
+      dockerfile: deploy/docker/monorepo/Dockerfile
+    ports:
+      - "9000:9000"
+
+  api-pdf:
+    build:
+      context: ./
+      dockerfile: deploy/docker/api-pdf/Dockerfile
+    ports:
+      - "8080:8080"
+
+  app-agstudio:
+    build:
+      context: ./
+      dockerfile: deploy/docker/app-agstudio/Dockerfile
+    ports:
+      - "3000:8080"

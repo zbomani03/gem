@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginComponent> when the user is not logged in with error notification renders differently 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`<LoginComponent> when the user is not logged in with info notification renders differently 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

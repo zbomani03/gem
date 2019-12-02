@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+echo "Starting do/deploy"
+
+export K8_NAMESPACE=${K8_NAMESPACE:-agstudio}  # default the k8's namespace
+
+if [ -z "${ENVIRONMENT}" ]; then
+    echo "ENVIRONMENT must be set!"
+    exit 1
+fi
+
+if [ -z "${REGION}" ]; then
+    echo "REGION must be set!"
+    exit 1
+fi
+
+virtualenv venv --python=python3.6
+./venv/bin/pip3 install -q --upgrade wheel k8-deployer kong-routes-cli~=0.1
+
+./venv/bin/k8deployer -p ./deploy/service
+
+./venv/bin/kong-routes upsert --routes_filename deploy/routes/${ENVIRONMENT}/${REGION}/routes.json
+
+echo "Completed do/deploy"

@@ -1,0 +1,63 @@
+.agstudio-error-card {
+
+  > div {
+
+    max-width: 480px;
+    min-width: 280px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+
+    a {
+      text-decoration: none
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 100px;
+      margin-bottom: 0;
+      font-weight: 800;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 19px;
+      line-height: 23px;
+      max-width: 330px;
+      margin: 0 auto 30px auto;
+      font-weight: 400;
+    }
+
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .agstudio-error-card {
+
+    > div {
+
+      h1 {
+        font-size: 75px
+      }
+
+      h3 {
+
+        font-size: 16px;
+        width: 200px;
+        margin: 0 auto;
+        line-height: 23px;
+
+        span {
+          width: 60px
+        }
+
+      }
+
+    }
+
+  }
+
+}

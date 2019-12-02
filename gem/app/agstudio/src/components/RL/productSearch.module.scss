@@ -1,0 +1,138 @@
+.productSearch {
+    background-color: #259367;
+    bottom: 0;
+    box-shadow: none !important;
+    position: absolute;
+    left: 0;
+    margin: 0;
+    right: 0;
+    top: 0;
+    transition: opacity .3s cubic-bezier(0.075, 0.82, 0.165, 1), transform .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: -1;
+
+    &.modActive {
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 1;
+    }
+
+    &.global {
+        background-color: #2d64b3;
+    }
+
+    .gsHeader,
+    .gsFooter {
+        background-color: transparent;
+        border-color: rgba(255,255,255,.15);
+    }
+
+    i {
+        color: #fff;
+    }
+
+    .gsHeader {
+
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        h5 {
+            color: #fff;
+            font-weight: normal;
+            margin: 0;
+        }
+
+    }
+
+    .gsBody {
+        flex: 1 0 auto;
+        height: 1px;
+        overflow: auto;
+    }
+
+    .gsFooter {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .formLabel {
+        color: #fff !important;
+        display: inline-block;
+        font-size: 12px;
+    }
+    
+    .spinner {
+        height: 60px;
+    }
+
+    @media screen and (max-width: 767px) {
+        border-radius: 0;
+        left: 0;
+        margin: 0;
+        right: 0;
+    }
+
+}
+
+.whiteButton {
+
+    color: #fff !important;
+    border-color: #fff !important;
+
+    &:disabled,
+    &.disabled,
+    &#{&}:not(:disabled)#{&}:not(.disabled)#{&}:focus,
+    &#{&}:not(:disabled)#{&}:not(.disabled)#{&}:hover {
+        color: #fff !important;
+        border-color: #fff !important;
+    }
+
+}
+
+.emptyStateBox {
+    & h3 {
+        background: #c03131;
+        color: #fff !important;
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 3px;
+    }
+    & h5 {
+        color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+.lotItem {
+
+    list-style-type: none;
+
+    .lotCard {
+
+        border-color: transparent transparent rgba(0,0,0,.07) transparent;
+        border-style: solid;
+        border-width: 1px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+
+        .productName {
+            flex: 1 1 auto;
+            color: #fff;
+        }
+
+        .lightGryLabel {
+            font-size: 12px;
+            color: rgba(255,255,255,.6);
+            padding-right: 10px;
+        }
+
+        &:hover {
+            background-color: rgba(0,0,0,.03);
+        }
+
+    }
+
+}

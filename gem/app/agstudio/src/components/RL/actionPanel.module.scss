@@ -1,0 +1,29 @@
+.linkedStatus {
+    color:#aaa;
+}
+
+.modLinked {
+    color: #28a170;
+}
+
+.actionPanelBody {
+    flex: 1 0 auto;
+    height: 1px;
+    overflow: auto;
+}
+
+.spinner {
+    flex: 1 1 auto;
+    height: 60px;
+}
+
+.lightGryLabel {
+    font-size: 12px;
+    color: #aaa;
+    padding-right: 10px;
+}
+
+.actionPanelFooter {
+    display: flex;
+    justify-content: flex-end;
+}

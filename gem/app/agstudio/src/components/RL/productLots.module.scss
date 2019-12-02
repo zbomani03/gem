@@ -1,0 +1,44 @@
+.lotItem {
+    list-style-type: none;
+}
+
+.lotCard {
+    border-color: transparent transparent rgba(0,0,0,.07) transparent;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    .productName {
+        flex: 1 1 auto;
+    }
+
+    .manufacturer {
+        flex: 0 0 auto;
+    }
+
+    &:hover {
+        background-color: rgba(0,0,0,.03);
+    }
+
+    &.modSelected {
+        background-color: #28a170;
+        background-image: linear-gradient(to right, #28a170, #42c16a);
+        border-color: transparent;
+        color: #fff;
+        transition:
+            background-color .5s cubic-bezier(0.075, 0.82, 0.165, 1),
+            color .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        .lightGryLabel {
+            color: #fff;
+        }
+    }
+}
+
+.lightGryLabel {
+    font-size: 12px;
+    color: #aaa;
+    padding-right: 10px;
+}

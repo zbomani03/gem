@@ -1,0 +1,87 @@
+@import "../../scss/variables.scss";
+
+.agstudio-navigation {
+
+  h4 {
+    color: $ms-secondary;
+  }
+
+  .domainPickerDesc {
+    display: inline-block;
+    vertical-align: sub;
+  }
+
+  button {
+    text-decoration: none !important;
+
+    i {
+      font-size: 24px !important;
+    }
+
+    path:last-child {
+      fill: #2d64b3;
+    }
+
+    &:hover {
+      path:last-child {
+        fill: #1e4276;
+      }
+    }
+
+  }
+
+  button {
+    margin-top: .2em;
+    margin-bottom: .2em;
+  }
+
+  .link {
+
+    padding: .5em .8em !important;
+    border-radius: .4em;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .05) !important;
+      text-decoration: none !important;
+    }
+
+    &.active {
+
+      color: #000;
+      cursor: default;
+
+      &:hover {
+        background-color: transparent !important;
+        text-decoration: none !important;
+      }
+
+    }
+
+  }
+
+}
+
+/*md*/
+@media (max-width: 767px) {
+  .agstudio-navigation {
+
+    .domainPickerDesc {
+      display: none;
+    }
+
+  }
+}
+
+/*xs and sm*/
+@media (max-width: 575px) {
+  .agstudio-navigation {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    .link {
+      padding: .5em !important;
+      display: block !important;
+    }
+
+  }
+}

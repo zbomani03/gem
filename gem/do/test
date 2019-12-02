@@ -1,0 +1,23 @@
+# !/bin/bash -e
+
+# Get the latest Ginger build scripts
+buildFile=ginger_build_scripts.tar.gz
+echo "Downloading Ginger Build Scripts"
+wget -nv https://artifactory.internal.granular.ag/artifactory/ginger/${buildFile}
+tar -xzf ${buildFile} -C ./do
+echo "Deleting ${buildFile}"
+rm -rf ${buildFile}
+
+# Set System Variables
+export TEST_PATH="qascripts/test/APPA/*.csv"
+export PROPERTIES_PATH="/ginger/qascripts/environment/${ENVIRONMENTSHORTNAME}.properties"
+export NO_LOG=false
+export NO_LIST=false
+export MAX=1
+export QASCRIPTS_ARTIFACT=ginger/appa/qascripts.tar.gz
+
+echo "Running Ginger Setup"
+do/ginger_setup
+
+echo "Running Ginger Test(s)"
+do/run_ginger_tests

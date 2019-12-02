@@ -1,0 +1,25 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: "{{K8_NAMESPACE}}"
+  name: "agstudio-{{PRODUCTNAME}}"
+  labels:
+    app: "agstudio-{{PRODUCTNAME}}"
+    name: "agstudio-{{PRODUCTNAME}}"
+    product: "agstudio"
+    team: "agstudio"
+    customer_facing: "yes"
+    version: "{{CONTAINERVERSION}}"
+    slack_channel: "agstudio_notify"
+    victorops_routing_key: "agstudio"
+  annotations:
+    # what route-53 entry to create, needs to match host on ingress
+    external-dns.alpha.kubernetes.io/hostname: "agstudio-{{PRODUCTNAME}}.{{CLUSTERNAME}}"
+spec:
+  ports:
+    - name: "agstudio-{{PRODUCTNAME}}"
+      port: 8080
+      targetPort: http
+  selector:
+    app: "agstudio-{{PRODUCTNAME}}"

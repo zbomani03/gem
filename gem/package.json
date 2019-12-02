@@ -1,0 +1,21 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  },
+  "workspaces": [
+    "packages/*",
+    "app/*",
+    "api/*"
+  ],
+  "scripts": {
+    "prestart": "lerna run transpile --stream",
+    "start": "lerna run start --parallel",
+    "pretest": "lerna run transpile --stream",
+    "test": "CI=true lerna run test --parallel",
+    "build:development": "lerna run build:development --parallel",
+    "build:staging": "lerna run build:staging --parallel",
+    "build:production": "lerna run build:production --parallel"
+  }
+}

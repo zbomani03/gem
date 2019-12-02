@@ -1,0 +1,74 @@
+[
+  {
+    "service": {
+      "plugins": [
+        {
+          "name": "jwt",
+          "config": {
+            "claims_to_verify": [
+              "exp"
+            ],
+            "run_on_preflight": false,
+            "key_claim_name": "kid"
+          }
+        }
+      ],
+      "routes": [
+        {
+          "hosts": [
+            "us.lite.granular.ag"
+          ],
+          "paths": [
+            "/api/agstudio-pdf-agstudio"
+          ],
+          "methods": [
+            "GET",
+            "POST",
+            "OPTIONS"
+          ]
+        }
+      ],
+      "name": "agstudio-pdf-agstudio",
+      "url": "https://agstudio-api-pdf.cluster.us.lite.granular.ag"
+    }
+  },
+  {
+    "service": {
+      "plugins": [
+        {
+          "config": {
+            "headers": [
+              "Authorization"
+            ],
+            "methods": [
+              "GET",
+              "POST"
+            ],
+            "origins": [
+              "https://app.myagstudio.com"
+            ],
+            "preflight_continue": false
+          },
+          "name": "cors"
+        }
+      ],
+      "routes": [
+        {
+          "hosts": [
+            "app.myagstudio.com"
+          ],
+          "paths": [
+            "/"
+          ],
+          "methods": [
+            "GET",
+            "POST",
+            "OPTIONS"
+          ]
+        }
+      ],
+      "name": "agstudio",
+      "url": "https://agstudio-app-agstudio.cluster.us.lite.granular.ag"
+    }
+  }
+]

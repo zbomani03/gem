@@ -1,0 +1,119 @@
+// GK UX Styles
+@import "../../../../node_modules/@gkernel/ux-assets/ux-core.css";
+
+//TODO This is temporary override of some styles until we get fixed the url-resolved for scss
+@import "./variables.scss";
+
+//Generic HTML Overrides
+
+body {
+  background-image: linear-gradient(to bottom, $ms-body1 75%, $ms-body2) !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+* {
+  outline: none !important;
+}
+
+button {
+
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+
+}
+
+a {
+
+  &:hover {
+    text-decoration: none;
+  }
+
+}
+
+table {
+
+  th, th > div, td, td > div {
+    text-align: right;
+  }
+
+}
+
+//GK UX Components Overrides
+
+.navbar-brand {
+  display: none !important;
+}
+
+.gk-navbar-left.ml-3 {
+  margin: 0 !important;
+}
+
+.container-fluid .container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.card {
+  //padding: 6px 12px !important;
+  margin-top: 1.5rem;
+  border: 0 !important;
+  box-shadow: 0 2px 2px 0 rgba(60, 64, 67, .08), 0 2px 4px 2px rgba(60, 64, 67, .16) !important;
+}
+
+.card,
+.btn {
+  border-radius: 3px !important;
+}
+
+.card-header:first-child {
+  border-radius: inherit !important;
+}
+
+.card div.table-responsive div.table-responsive {
+  border-radius: 0 !important;
+}
+
+.v-border {
+  border-width: 1px !important;
+}
+
+//Custom Elements and Classes
+
+.header-row {
+
+  background-color: $ms-green-bg;
+  position: relative;
+  top: 6rem;
+  padding-top: 6rem;
+  margin-top: -6rem;
+
+  > div {
+    position: relative;
+    top: -6rem;
+  }
+
+}
+
+.cursor-pointer {
+  cursor: pointer
+}
+
+label {
+
+  &.dark-mode {
+    color: rgba(255, 255, 255, 0.54) !important;
+  }
+
+}
+
+#notifications {
+  position: absolute;
+  width: 300px;
+  top: 72px;
+  right: 8px;
+  z-index: 2;
+}

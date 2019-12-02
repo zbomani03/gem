@@ -1,0 +1,27 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: "{{K8_NAMESPACE}}"
+  name: "agstudio-{{PRODUCTNAME}}"
+  labels:
+    app: "agstudio-{{PRODUCTNAME}}"
+    name: "agstudio-{{PRODUCTNAME}}"
+    product: "agstudio"
+    team: "agstudio"
+    customer_facing: "yes"
+    version: "{{CONTAINERVERSION}}"
+    slack_channel: "agstudio_notify"
+    victorops_routing_key: "agstudio"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  rules:
+    - host: "agstudio-{{PRODUCTNAME}}.{{CLUSTERNAME}}" # must match the k8's service
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "agstudio-{{PRODUCTNAME}}" # must match the k8's service
+              servicePort: 8080
